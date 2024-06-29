@@ -389,7 +389,15 @@ def evaluateImage(img, digit_model):
     # Forward propagation
     Y_hat = digit_model.forward_propagation(img_data)
 
+    percentageList = []
+    for i in range(10):
+      percentage = Y_hat[i][0] * 100
+      percentageList.append([i, percentage])
+    
+    percentageList.sort(key=lambda x: x[1], reverse=True)
+    
     # Get the predicted digit
     predicted_digit = np.argmax(Y_hat)
+    percentageStr = '\n'.join([f"{i}: {percentage:.2f}%" for i, percentage in percentageList])
 
-    return predicted_digit
+    return percentageStr
