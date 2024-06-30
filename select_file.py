@@ -10,7 +10,7 @@ class PhotoApp:
         self.root.title("Photo Viewer")
         
         # Set initial window size and position
-        self.root.geometry("700x600")  # Set initial dimensions (width x height)
+        self.root.geometry("700x900")  # Set initial dimensions (width x height)
         
         self.image_label = tk.Label(self.root)
         self.image_label.pack(pady=10)
@@ -30,13 +30,13 @@ class PhotoApp:
 
     def display_photo(self, file_path):
         image = Image.open(file_path)
-        resized_image = image.resize((300, 300))  # Resize to 500x500 pixels
+        resized_image = image.resize((200, 200))  # Resize to 500x500 pixels
         photo = ImageTk.PhotoImage(resized_image)
         self.image_label.configure(image=photo)
         self.image_label.image = photo
 
         random_number = evaluateImage(image, self.digit_network)
-        self.random_number_label.configure(text=f"Predicted number: {random_number}")
+        self.random_number_label.configure(text=f"{random_number}")
 
 if __name__ == "__main__":
     root = tk.Tk()
